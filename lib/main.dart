@@ -5,83 +5,37 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: WeatherScreen(),
-    );
-  }
-}
-
-class WeatherScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF83A4D4),
-              Color(0xFFB6FBFF),
-            ],
-          ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Shoes"),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        body: ListView(
+          padding: const EdgeInsets.all(8.0),
           children: [
-            Text(
-              "Harlem",
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              "Tuesday, January 10, 2019",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white70,
-              ),
-            ),
-            SizedBox(height: 40),
-            Text(
-              "15°C",
-              style: TextStyle(
-                fontSize: 80,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 10),
-            Divider(
-              color: Colors.white70,
-              thickness: 1,
-              indent: 50,
-              endIndent: 50,
-            ),
-            SizedBox(height: 10),
-            Text(
-              "Cloudy",
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.white70,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              "25°C / 28°C",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white70,
-              ),
-            ),
+            shoeItem("Nike SB Zoom Blazer", "8,785", Colors.purple),
+            shoeItem("Nike Air Zoom Pegasus", "9,995", Colors.blue),
+            shoeItem("Nike ZoomX Vaporfly", "21,695", Colors.pink),
+            shoeItem("Nike Air Force 1 '550", "6,295", Colors.grey),
+            shoeItem("Nike Waffle One", "8,295", Colors.orange),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget shoeItem(String name, String price, Color color) {
+    return Card(
+      color: color,
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      child: ListTile(
+        title: Text(name, style: const TextStyle(color: Colors.white)),
+        subtitle: Text("Price: ₹$price", style: const TextStyle(color: Colors.white70)),
+        trailing: const Icon(Icons.shopping_cart, color: Colors.white),
       ),
     );
   }
